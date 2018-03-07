@@ -26,8 +26,3 @@
 	</table>
 	<br>
 	<br>
-	<div class="homeDiv">
-		<p class="homeP">
-			<a href="${pageContext.request.contextPath}/">Home</a>
-		</p>
-	</div>

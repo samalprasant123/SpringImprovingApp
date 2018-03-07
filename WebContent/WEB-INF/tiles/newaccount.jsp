@@ -51,9 +51,17 @@ $(document).ready(onLoad);
 			<tr>
 				<td class="label">Username:</td>
 				<td><sf:input class="control" type="text" name="username"
-						path="username" placeholder="Enter name" />
+						path="username" placeholder="Enter username" />
 					<div class="error">
 						<sf:errors path="username"></sf:errors>
+					</div></td>
+			</tr>
+			<tr>
+				<td class="label">Name:</td>
+				<td><sf:input class="control" type="	" name="name"
+						path="name" placeholder="Enter name" />
+					<div class="error">
+						<sf:errors path="name"></sf:errors>
 					</div></td>
 			</tr>
 			<tr>

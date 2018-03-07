@@ -12,7 +12,7 @@ public class Offer {
 	private String text;
 	
 	public Offer() {
-		
+		this.user = new User();
 	}
 	
 	public Offer(User user, String text) {

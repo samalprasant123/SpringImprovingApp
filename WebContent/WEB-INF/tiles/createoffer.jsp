@@ -8,18 +8,6 @@
 		commandName="offer">
 		<table class="offertable">
 			<tr>
-				<td class="label">Name:</td>
-				<td><sf:input class="control" type="text" name="name"
-						path="name" placeholder="Enter name" /><br /> <sf:errors
-						path="name" cssClass="error"></sf:errors></td>
-			</tr>
-			<tr>
-				<td class="label">Email:</td>
-				<td><sf:input class="control" type="text" name="email"
-						path="email" placeholder="Enter email" /><br /> <sf:errors
-						path="email" cssClass="error"></sf:errors></td>
-			</tr>
-			<tr>
 				<td class="label">Your Offer:</td>
 				<td><sf:textarea class="control" name="text" path="text"
 						rows="4" cols="50" placeholder="Enter your offer here"></sf:textarea><br />

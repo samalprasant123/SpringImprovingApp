@@ -1,5 +1,6 @@
 package com.prasant.spring.mvc.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -34,10 +35,12 @@ public class OffersController {
 	}
 	
 	@RequestMapping(value="/docreate", method=RequestMethod.POST)
-	public String offerCreated(Model model, @Valid Offer offer, BindingResult bindingResult) {
+	public String offerCreated(Model model, @Valid Offer offer, BindingResult bindingResult, Principal principal) {
 		if (bindingResult.hasErrors()) {
 			return "createoffer";
 		}
+		String username = principal.getName();
+		offer.getUser().setUsername(username);
 		offerService.createOffer(offer);
 		return "offercreated";
 	}

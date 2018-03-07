@@ -15,8 +15,8 @@
 		<tbody>
 			<c:forEach var="offer" items="${ offers }">
 				<tr>
-					<td class="offerDisplayTd">${offer.name}</td>
-					<td class="offerDisplayTd">${offer.email}</td>
+					<td class="offerDisplayTd">${offer.user.name}</td>
+					<td class="offerDisplayTd">${offer.user.email}</td>
 					<td class="offerDisplayTd">${offer.text}</td>
 				</tr>
 			</c:forEach>

@@ -9,7 +9,9 @@
 	<security:authentication-manager>
 		<security:authentication-provider>
 			<security:jdbc-user-service data-source-ref="dataSource"
-				id="jdbcUserService" />
+				id="jdbcUserService"
+				authorities-by-username-query="SELECT username, authority FROM users WHERE BINARY username = ?"
+				users-by-username-query="SELECT username, password, enabled FROM users WHERE BINARY username = ?" />
 			<security:password-encoder ref="passwordEncoder"></security:password-encoder>
 		</security:authentication-provider>
 	</security:authentication-manager>
