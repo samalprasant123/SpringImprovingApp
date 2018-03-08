@@ -45,12 +45,12 @@ public class OfferDaoTest {
 	}
 	
 	@Test
-	public void testCreateOffer() {
-		User user = new User("testuser2", "testuser2@email.com", "password", true, "ROLE_USER", "Test User2");
-		assertTrue("User creation successfull", userDao.create(user));
-		Offer offer = new Offer(user, "I was created to be deleted.");
-		assertTrue("Ofer creation successful", offerDao.create(offer));
-		List<Offer> offers = offerDao.getOffersByName("testuser2");
+	public void testOffer() {
+		User user = new User("grout", "grout@cat.com", true, "ROLE_USER", "Gayatree Rout");
+		//assertTrue("User creation successfull", userDao.create(user));
+		Offer offer = new Offer(user, "I can write awesome contents.");
+		//assertTrue("Ofer creation successful", offerDao.create(offer));
+		List<Offer> offers = offerDao.getOffersByUserName("grout");
 		assertEquals("Retrieved offer should match created offer", offer, offers.get(0));
 	}
 }

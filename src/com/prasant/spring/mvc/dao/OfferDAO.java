@@ -34,18 +34,7 @@ public class OfferDAO {
 		List<Offer> offers = null;
 		try {			
 			String sql = "SELECT * FROM offer, users WHERE offer.username = users.username AND users.enabled = true";
-			offers = jdbcTemplate.query(sql, new RowMapper<Offer>() {
-				@Override
-				public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
-					User user = new User(rs.getString("username"), 
-							rs.getString("email"), 
-							rs.getBoolean("enabled"), 
-							rs.getString("authority"), 
-							rs.getString("name"));
-					Offer offer = new Offer(rs.getInt("id"), user, rs.getString("text"));
-					return offer;
-				}
-			});
+			offers = jdbcTemplate.query(sql, new OfferRowMapper());
 		} catch(CannotGetJdbcConnectionException e) {
 			System.out.println("Cannot connect to database " + e.getMessage());
 		} catch (Exception e) {
@@ -74,24 +63,12 @@ public class OfferDAO {
 		return offer;
 	}
 	
-	public List<Offer> getOffersByName(String name) {
+	public List<Offer> getOffersByUserName(String username) {
 		List<Offer> offers = null;
 		MapSqlParameterSource paramMap = new MapSqlParameterSource();
-		paramMap.addValue("name", name);
-		String sql = "SELECT * FROM offer, users WHERE offer.username = users.username AND users.enabled = true AND offer.username = :name";
-		offers = jdbcTemplate.query(sql, paramMap, new RowMapper<Offer>() {
-
-			@Override
-			public Offer mapRow(ResultSet rs, int rowNum) throws SQLException {
-				User user = new User(rs.getString("username"), 
-						rs.getString("email"), 
-						rs.getBoolean("enabled"), 
-						rs.getString("authority"), 
-						rs.getString("name"));
-				Offer offer = new Offer(rs.getInt("id"), user, rs.getString("text"));
-				return offer;
-			}
-		});
+		paramMap.addValue("username", username);
+		String sql = "SELECT * FROM offer, users WHERE offer.username = users.username AND users.enabled = true AND offer.username = :username";
+		offers = jdbcTemplate.query(sql, paramMap, new OfferRowMapper());
 		return offers;
 	}
 	
