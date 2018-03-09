@@ -6,6 +6,9 @@
 	<sf:form method="post"
 		action="${pageContext.request.contextPath}/docreate"
 		commandName="offer">
+		
+		<sf:input type="hidden" path="id"/>
+		
 		<table class="offertable">
 			<tr>
 				<td class="label">Your Offer:</td>
@@ -15,7 +18,7 @@
 			</tr>
 			<tr>
 				<td class="label"></td>
-				<td><input class="control" type="submit" value="Create Offer"></td>
+				<td><input class="control" type="submit" value="Save Offer"></td>
 			</tr>
 		</table>
 	</sf:form>
