@@ -95,3 +95,7 @@ a.login {
 	right: 20px;
 }
 
+input.delete {
+	border: 1px solid red;
+}
+

@@ -58,4 +58,8 @@ public class OfferService {
 		}		
 	}
 
+	public void deleteOffer(int offerId) {
+		offerDao.delete(offerId);
+	}
+
 }

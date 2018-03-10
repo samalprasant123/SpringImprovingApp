@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.prasant.spring.mvc.model.Offer;
 import com.prasant.spring.mvc.service.OfferService;
@@ -44,14 +45,23 @@ public class OffersController {
 	}
 	
 	@RequestMapping(value="/docreate", method=RequestMethod.POST)
-	public String offerCreated(Model model, @Valid Offer offer, BindingResult bindingResult, Principal principal) {
+	public String offerCreated(Model model, @Valid Offer offer, BindingResult bindingResult, Principal principal,
+			@RequestParam(value="save", required = false) String actionSave,
+			@RequestParam(value="delete", required = false) String actionDelete) {
 		if (bindingResult.hasErrors()) {
 			return "createoffer";
 		}
-		String username = principal.getName();
-		offer.getUser().setUsername(username);
-		offerService.saveOrUpdate(offer);
-		return "offercreated";
+		if (actionSave != null && actionSave.equals("Save Offer")) {
+			String username = principal.getName();
+			offer.getUser().setUsername(username);
+			offerService.saveOrUpdate(offer);
+			return "offercreated";
+		} else if (actionDelete != null && actionDelete.equals("Delete Offer")) {
+			offerService.deleteOffer(offer.getId());
+			return "offerdeleted";
+		} else {
+			return "createoffer";
+		}
 	}
 	
 }
